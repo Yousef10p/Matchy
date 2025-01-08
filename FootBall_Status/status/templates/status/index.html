@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Index Page{% endblock title %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static "status/CSS/index.css" %}">
+<script src="{% static "status/js/index.js" %}"></script>
+
+{% endblock links %}
+
+{% block content %}
+
+    {% comment %} <div class="intersting-events">
+
+    </div> {% endcomment %}
+
+    <div class="root-div">
+
+        {% for lg in data %}
+        <div id="{{lg.leaugeCODE}}" class="League-Box bg-warning" onclick="window.location.href='{% url 'leagueDetail' lg.leaugeCODE %}';" style="cursor: pointer;">
+            <img class="league-icon" src="{{lg.leaugeICON}}" alt="{{lg.leaugeNAME}} league Icon">
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock content %}
