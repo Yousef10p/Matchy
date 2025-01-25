@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{info.shortName}}{% endblock title %}
+
+{% block links %}
+
+<link rel="stylesheet" href="{% static "status/CSS/team.css" %}">
+
+<script src="{% static "status/js/team.js" %}"></script>
+
+<link rel="icon" href="{{info.crest}}" type="image/svg+xml">
+
+{% endblock links %}
+
+{% block content %}
+
+{% endblock %}

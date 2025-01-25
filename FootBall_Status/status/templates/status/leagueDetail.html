@@ -5,118 +5,13 @@
 {% block links %}
 <link rel="stylesheet" href="{% static "status/CSS/leagueDetail.css" %}">
 <script src="{% static "status/js/leagueDetail.js" %}"></script>
+<link rel="icon" href="{{league.emblem}}" type="image/svg+xml">
+
 {% endblock links %}
+    
+{% endblock %}
 
 {% block content %}
-    
-<div class="root-div bg-secondary mt-3">
 
-    <div class="LHS">
-        <div id="LHS-Table" class="mx-auto">
-            <table  class="table table-dark table-hover w-100 ">
-                <thead>
-                <tr>
-                    <th scope="col">Position</th>
-                    <th scope="col">Team</th>
-                    <th scope="col">Games</th>
-                    <th scope="col">Points</th>
-                    <th scope="col">+/-</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {% for t in table %}
-                <tr>
-                    <td {% if t.position == 1 %}class="text-dark bg-warning"
-                        {% elif t.position == 2 %} class=" bg-primary"
-                        {% elif t.position == 3 %} class="text-dark bg-danger"
-                        {% elif t.position == 4 %} class="text-dark bg-info"
-                        {% elif t.position == 5 %} class="text-dark bg-light"
-                    
-                    {% endif %}
-                    >{{t.position}}</td>
-                    <td>{{t.team}}</td>
-                    <td>{{t.playedGames}}</td>
-                    <td>{{t.points}}</td>
-                    <td>{{t.goalDifference}}</td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="RHS">
-        <div class="RHS-UPPER">
-            <div id="RHS-Table" class="mx-auto">
-                <table  class="table  table-striped  table-hover w-100  ">
-                    <thead>
-                    <tr>
-                        <th scope="col">Home</th>
-                        <th scope="col">Away</th>
-                        <th scope="col">Date</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {% for m in matches  %}
-                        <tr>
-                            <td {% if m.homeTeam.id  == 81 or m.homeTeam.id == 86  %}class="text-danger bg-secondary" {% else %} class=""{% endif %} > {{m.homeTeam.name}}</td>
-                            <td {% if m.awayTeam.id  == 81 or m.awayTeam.id  == 86  %}class="text-danger bg-secondary" {% else %} class=""{% endif %} > {{m.awayTeam.name}}</td>
-                            <td>{{m.utcDate}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <hr>
-        <div class="RHS-LOWER">
-            <div class="RHS-LOWER-LEFT">
-                <div id="RHS-LOWER-LEFT-Table" class="mx-auto">
-                    <table  class="table  table-striped  table-hover w-100  ">
-                        <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Team</th>
-                            <th scope="col">Goals</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {% for s in scorers  %}
-                            <tr>
-                                <td>{{s.player.name}}</td>
-                                <td>{{s.team.shortName}}</td>
-                                <td>{{s.goals}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="RHS-LOWER-RIGHT ">
-                <div id="RHS-LOWER-RIGHT-Table" class="mx-auto"> 
-                    <table  class="table  table-striped  table-hover w-100  ">
-                        <thead>
-                        <tr>
-                            <th scope="col">Home</th>
-                            <th scope="col">Result</th>
-                            <th scope="col">Away</th>
-                            <th scope="col">Date</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {% for m in matchesF  %}
-                            <tr>
-                                <td {% if m.score.winner == 'HOME_TEAM' %}class="text-info bg-dark" {% elif m.score.winner == 'DRAW' %} class="text-warning bg-dark" {% else %} class="text-danger bg-dark" {% endif %}> {{m.homeTeam.shortName}}</td>
-                                <td >{{m.score.fullTime.home}}-{{m.score.fullTime.away}}</td>
-                                <td {% if m.score.winner == 'AWAY_TEAM' %}class="text-info bg-dark" {% elif m.score.winner == 'DRAW' %} class="text-warning bg-dark" {% else %} class="text-danger bg-dark" {% endif %}> {{m.awayTeam.shortName}} </td>
-                                <td class="bg-dark text-light"> {{m.utcDate}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 {% endblock content %}

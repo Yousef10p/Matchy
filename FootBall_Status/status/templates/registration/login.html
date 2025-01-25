@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static "registration/CSS/login.css" %}">    
+{% endblock links %}
+{% block title %}Login{% endblock  %}
+
+
+{% block content %}
+
+<div class="wrapper">
+    
+    <form method="post">
+        {% csrf_token %}
+        <h1>Login</h1>
+        {% if form.non_field_errors %}
+        <div class="err">
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+        <div class="input-box">
+            {% comment %} <input type="text" placeholder="Username" required> {% endcomment %}
+            {{form.username}}
+            <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+            {% comment %} <input type="password" placeholder="Password" required> {% endcomment %}
+            {{form.password}}
+            <i class='bx bxs-lock-alt' ></i>
+        </div>
+
+        <!-- <div class="remember-forget">
+            <label><input type="checkbox">Remember me</label>
+            <a href="#">Forget Password?</a>
+        </div> -->
+        <button type="submit" class="btn">Login</button>
+        <div class="register-link">
+            <p>Don't have an account ? <a href="{% url "register" %}">Register</a></p>
+        </div>
+    </form>
+</div>
+    
+{% endblock content %}

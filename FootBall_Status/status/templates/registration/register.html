@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static "registration/CSS/register.css" %}">
+<script src="{% static "registration/js/register.js" %}"></script>
+{% endblock links %}
+{% block title %}Register{% endblock  %}
+
+{% block content %}
+    <div class="wrapper">
+        
+        <form method="post">
+            {% csrf_token %}
+            <h1>Register</h1>
+            
+            {% if form.username.errors %}
+                    {% for error in form.username.errors %}
+                        <div style="color: red;">{{ error }}</div>
+                    {% endfor %}
+            {% endif %}
+            <div class="input-box">
+                {% comment %} <input type="text" placeholder="Username" required> {% endcomment %}
+                {{form.username}}
+                <i class='bx bxs-user'></i>
+            </div>
+
+
+            {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                        <div style="color: red;">{{ error }}</div>
+                    {% endfor %}
+            {% endif %}
+            <div class="input-box">
+                {% comment %} <input type="password" placeholder="Password" required> {% endcomment %}
+                {{form.email}}
+                <i class='bx bx-envelope' ></i>
+            </div>
+
+            {% if form.password1.errors %}
+                    {% for error in form.password1.errors %}
+                        <div style="color: red;">{{ error }}</div>
+                    {% endfor %}
+            {% endif %}
+            <div class="input-box">
+                {% comment %} <input type="password" placeholder="Password" required> {% endcomment %}
+                {{form.password1}}
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+
+            {% if form.password2.errors %}
+                    {% for error in form.password2.errors %}
+                        <div style="color: red;">{{ error }}</div>
+                    {% endfor %}
+            {% endif %}
+            <div class="input-box">
+                {% comment %} <input type="password" placeholder="Password" required> {% endcomment %}
+                {{form.password2}}
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+
+            
+
+            <!-- <div class="remember-forget">
+                <label><input type="checkbox">Remember me</label>
+                <a href="#">Forget Password?</a>
+            </div> -->
+            <button type="submit" class="btn">Register</button>
+            <div class="register-link">
+                <p>have an account ? <a href="{% url "login" %}">Login</a></p>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
